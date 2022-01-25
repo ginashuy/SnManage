@@ -1,0 +1,103 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.Master.cs" Inherits="WebByteFlow.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BYTE Flow</title>
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js" integrity="sha512-ju6u+4bPX50JQmgU97YOGAXmRMrD9as4LE05PdC3qycsGQmjGlfm041azyB1VfCXpkpt1i9gqXCT6XuxhBJtKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        (window.jQuery) || document.write('<script type="text/javascript" src="js/jquery-1.11.3.min.js"><\/script>');
+    </script>
+    <script type="text/javascript" src="js/jquery.blockUI.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/_bootstrap4-grid/bootstrap.min.css" />
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/plugins.bundle.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js" integrity="sha512-BI1itUvyiWbbZ446/8IOccwMPB/xobCTyQTS0r1+k8Pq1VPT3uIJKNCoMH12rKk18J9sH33xQNve7srB0IGYlg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        (window.jQuery) || document.write('<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"><\/script>');
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/css/jquery-ui.min.css" integrity="sha512-fY/KiwrnbqwjprQv9aGRbgAwILJhlfrlWnNDSjCb0HY5ltNmuuXTn/Av0fucSLbiTanaqzH8WhuLLUFecp0rFA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript">
+        (window.jQuery) || document.write('<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">');
+    </script>
+    <style>
+        .changepwd {
+            width: 30px;
+            display: inline;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <div class="container">
+                <div class="d-flex justify-content-between">
+                    <div class="logo-wrapper">
+                        <a href="Login.aspx">
+                            <img src="./images/LoginLogo.png" alt="login-logo" />
+                        </a>
+                    </div>
+                    <%-- <nav class="nav-container row">--%>
+                    <nav class="navbar navbar-expand-xl nav-container row" style="padding-bottom: 0px; padding-top: 0px;">
+                        <asp:Label runat="server" Text="" Visible="false" ID="lblRole" />
+                        <label style="color: black; margin: 0px 30px 0px 0px;">
+                            <i class="fa fa-user"></i>
+                            <asp:Label runat="server" CssClass="ml-1" ID="lblUser" />
+                            <%--<a href="https://account.bestyield.com/" target="_blank">
+                                <img src="./images/reload.png" alt="change password" class="changepwd" title="change password" />
+                            </a>--%>
+                        </label>
+
+                        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <!-- 這是按鈕上呈現的icon圖案 -->
+                            <i class="fa fa-bars" style="font-size: 18px"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="nav-wrapper d-flex justify-content-end">
+                                <asp:Repeater runat="server" ID="rptNavBar">
+                                    <ItemTemplate>
+                                        <%# Container.DataItem%>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <li class="nav-list-lang drop-down-list-lang">
+                                    <a style="border-radius: 220px 230px 230px 220px;">
+                                        <i class="fas fa-globe" title="更改語系 Change Language"></i>
+                                        <asp:Label runat="server" ID="lblChooseLang" CssClass="ml-1" />
+                                    </a>
+                                    <ul class="drop-down-menu-lang">
+                                        <li>
+                                            <asp:LinkButton Text="繁中" runat="server" OnClick="ChangeLang_Click" ID="lblCHT" /></li>
+                                        <li>
+                                            <asp:LinkButton Text="简中" runat="server" OnClick="ChangeLang_Click" ID="lblCHS" /></li>
+                                        <li>
+                                            <asp:LinkButton Text="English" runat="server" OnClick="ChangeLang_Click" ID="lblENG" /></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="container main-content-container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="d-flex justify-content-between">
+                    <div class="recommend-text">建議使用 Chrome、Firefox，並搭配解析度 1440 x 900 以上之螢幕，以獲得最佳的瀏覽體驗</div>
+                    <div class="copy-right-text">Copyright ©2021 BYTE International Co., Ltd. All rights reserved.</div>
+                </div>
+            </div>
+        </footer>
+    </form>
+</body>
+<script type="text/javascript" src="js/main.js"></script>
+</html>
